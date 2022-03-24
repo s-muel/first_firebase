@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "855866104191",
+    "project_id": "firstfire-fff88",
+    "storage_bucket": "firstfire-fff88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855866104191:android:aa89deb6098680303aa24a",
+        "android_client_info": {
+          "package_name": "com.example.firstfire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855866104191-jabsrni1uc2bet32cvrhjrse10sdvqh2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkSsGE2Wb_P79W7eBPlBeNyl2-Syqeah8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855866104191-jabsrni1uc2bet32cvrhjrse10sdvqh2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
