@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firstfire/services/database.dart';
 import 'package:flutter/material.dart';
 
 import '../Homepage.dart';
@@ -40,6 +41,8 @@ class _NewSignUpState extends State<NewSignUp> {
       try {
         UserCredential user = await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
+        await DatabaseService(uid: user.user!.uid)
+            .updateUserData('0', 'new member', 100);
         if (user != null) {
           // UserUpdateInfo updateuser = UserUpdateInfo();
           // updateuser.displayName = _name;
