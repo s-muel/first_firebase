@@ -15,6 +15,8 @@ class Consume extends StatefulWidget {
 
 class _ConsumeState extends State<Consume> {
   final DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
+  final movieController = TextEditingController();
+  final authorController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final ref = databaseReference.child('movies');
@@ -32,11 +34,69 @@ class _ConsumeState extends State<Consume> {
                 return ListTile(
                   title: Text(snapshot.child('movies').value.toString()),
                   subtitle: Text(snapshot.child('author').value.toString()),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                    onPressed: () {
-                      ref.child(snapshot.key.toString()).remove();
-                    },
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.delete, color: Colors.red),
+                        onPressed: () {
+                          ref.child(snapshot.key.toString()).remove();
+                        },
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.edit,
+                            color: Color.fromARGB(255, 54, 244, 63)),
+                        onPressed: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return Container(
+                                  padding: EdgeInsets.all(20),
+                                  child: Column(
+                                    children: [
+                                      TextField(
+                                        controller: movieController,
+                                        decoration: const InputDecoration(
+                                          labelText: 'Movie',
+                                          hintText: 'Movie',
+                                          prefixIcon: Icon(Icons.movie),
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0)),
+                                          ),
+                                        ),
+                                      ),
+                                      TextField(
+                                        controller: authorController,
+                                        decoration: const InputDecoration(
+                                          labelText: 'Author',
+                                          hintText: 'Author',
+                                          prefixIcon: Icon(Icons.person),
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0)),
+                                          ),
+                                        ),
+                                      ),
+                                      RaisedButton(
+                                        child: Text('Save'),
+                                        onPressed: () {
+                                          ref
+                                              .child(snapshot.key.toString())
+                                              .update({
+                                            'movies': movieController.text,
+                                            'author': authorController.text,
+                                          });
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                      ),
+                    ],
                   ),
                 );
               }),
