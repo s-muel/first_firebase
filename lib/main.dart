@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firstfire/SignUp.dart';
 import 'package:firstfire/login.dart';
+import 'package:firstfire/screens/bethel.dart';
 import 'package:firstfire/screens/consume.dart';
 import 'package:firstfire/screens/home.dart';
 import 'package:firstfire/screens/newLogin.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: Consume(firebaseApp: Firebase.app()),
-      home: HomeData(firebaseApp: Firebase.app()),
+      // home: HomeData(firebaseApp: Firebase.app()),
+      home: Product(),
     );
   }
 }

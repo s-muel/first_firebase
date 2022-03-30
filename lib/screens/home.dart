@@ -21,7 +21,7 @@ class _HomeDataState extends State<HomeData> {
   final DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
   @override
   Widget build(BuildContext context) {
-    final ref = databaseReference.child('movies');
+    final ref = databaseReference.child('groceries');
     final movieController = TextEditingController();
     final authorController = TextEditingController();
     return Scaffold(
@@ -37,48 +37,51 @@ class _HomeDataState extends State<HomeData> {
         ],
         title: const Text('Home'),
       ),
-      body: Column(children: [
-        TextField(
-          controller: authorController,
-          decoration: InputDecoration(
-            labelText: 'Search',
-            hintText: 'Search',
-            prefixIcon: Icon(Icons.search),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(children: [
+          TextField(
+            controller: movieController,
+            decoration: const InputDecoration(
+              labelText: 'Movie',
+              hintText: 'Movie',
+              prefixIcon: Icon(Icons.movie),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
             ),
           ),
-        ),
-        TextField(
-          controller: movieController,
-          decoration: InputDecoration(
-            labelText: 'Search',
-            hintText: 'Search',
-            prefixIcon: Icon(Icons.search),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          TextField(
+            controller: authorController,
+            decoration: const InputDecoration(
+              labelText: 'Author',
+              hintText: 'Author',
+              prefixIcon: Icon(Icons.person),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
             ),
           ),
-        ),
-        TextButton(
-            onPressed: () {
-              ref.push().set({
-                'movies': movieController.text,
-                'author': authorController.text,
-              }).asStream();
-              print(movieController.text);
-            },
-            child: const Text('Add')),
-        TextButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Consume(
-                  firebaseApp: Firebase.app(),
-                );
-              }));
-            },
-            child: const Text('HomePAge')),
-      ]),
+          TextButton(
+              onPressed: () {
+                ref.push().set({
+                  'movies': movieController.text,
+                  'author': authorController.text,
+                }).asStream();
+                print(movieController.text);
+              },
+              child: const Text('Add')),
+          TextButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Consume(
+                    firebaseApp: Firebase.app(),
+                  );
+                }));
+              },
+              child: const Text('HomePAge')),
+        ]),
+      ),
     );
   }
 }
