@@ -1,4 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firstfire/SignUp.dart';
+import 'package:firstfire/screens/home.dart';
+import 'package:firstfire/screens/newSignup.dart';
 import 'package:flutter/material.dart';
 
 import '../Homepage.dart';
@@ -21,8 +25,11 @@ class _NewloginState extends State<Newlogin> {
         print(user);
 
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return HomePage();
-        }));
+          return HomeData(
+            firebaseApp: Firebase.app(),
+          );
+        })
+        );
       }
     });
   }
@@ -95,6 +102,14 @@ class _NewloginState extends State<Newlogin> {
                   onSaved: (input) => _password = input!,
                 ),
                 TextButton(onPressed: login, child: const Text('Login')),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return NewSignUp();
+                      }));
+                    },
+                    child: const Text('Sign Up')),
               ],
             ))
       ],

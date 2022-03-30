@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firstfire/screens/home.dart';
+import 'package:firstfire/screens/newLogin.dart';
 import 'package:firstfire/services/database.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +24,7 @@ class _NewSignUpState extends State<NewSignUp> {
         print(user);
 
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return HomePage();
+          return Newlogin();
         }));
       }
     });
@@ -41,6 +43,7 @@ class _NewSignUpState extends State<NewSignUp> {
       try {
         UserCredential user = await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
+            // user data 
         await DatabaseService(uid: user.user!.uid)
             .updateUserData('0', 'new member', 100);
         if (user != null) {
@@ -52,7 +55,7 @@ class _NewSignUpState extends State<NewSignUp> {
 
         }
       } catch (e) {
-        //showError(e.message);
+      showError(e.toString());
         print(e);
       }
     }

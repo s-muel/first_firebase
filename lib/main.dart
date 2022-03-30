@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firstfire/SignUp.dart';
 import 'package:firstfire/login.dart';
+import 'package:firstfire/screens/consume.dart';
+import 'package:firstfire/screens/home.dart';
 import 'package:firstfire/screens/newLogin.dart';
 import 'package:firstfire/screens/newSignup.dart';
 import 'package:firstfire/start.dart';
@@ -32,7 +34,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: NewSignUp(),
+      // home: Consume(firebaseApp: Firebase.app()),
+      home: HomeData(firebaseApp: Firebase.app()),
     );
   }
 }
